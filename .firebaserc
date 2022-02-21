@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "kanban-board-c40c0": {
+      "hosting": {
+        "kanban-board": [
+          "kanban-board-c40c0"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "kanban-board-c40c0"
+  }
+}
