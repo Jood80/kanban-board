@@ -12,9 +12,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ShellComponent } from './shell/shell.component';
+import { NavComponent } from './nav/nav.component';
 
-const components = [ShellComponent];
+const components = [NavComponent];
 
 const modules = [
   CommonModule,
