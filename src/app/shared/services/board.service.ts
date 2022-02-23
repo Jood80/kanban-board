@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import firebase from 'firebase/compat/app';
-import { Observable, of } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 
 import { Board } from 'src/app/models/board.model';
 
@@ -26,6 +26,22 @@ export class BoardService {
       uid: user?.uid,
       tasks: [{ description: 'Initiate the project', label: 'red' }],
     });
+  }
+
+  getUserBoards() {
+    return this.authService.authState.pipe(
+      switchMap((user) => {
+        if (user) {
+          return this.db
+            .collection('boards', (ref) =>
+              ref.where('uid', '==', user.uid).orderBy('priority')
+            )
+            .valueChanges({ idField: 'id' }); //return as observable
+        } else {
+          return [];
+        }
+      })
+    );
   }
 
   deleteBoard(boardID: string) {
