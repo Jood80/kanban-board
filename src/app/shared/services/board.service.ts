@@ -44,6 +44,17 @@ export class BoardService {
     );
   }
 
+  /**
+   * Run a batch write to change the priority of each board for sorting
+   */
+  sortBoards(boards: Board[]) {
+    const db = firebase.firestore();
+    const batch = db.batch();
+    const refs = boards.map((board) => db.collection('boards').doc(board.id));
+    refs.forEach((ref, idx) => batch.update(ref, { priority: idx }));
+    batch.commit();
+  }
+
   deleteBoard(boardID: string) {
     return this.db.collection('boards').doc(boardID).delete();
   }
