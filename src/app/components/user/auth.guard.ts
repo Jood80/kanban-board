@@ -5,12 +5,16 @@ import {
   CanActivate,
   RouterStateSnapshot,
 } from '@angular/router';
+import { SnackService } from 'src/app/shared/services/snack.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AngularFireAuth) {}
+  constructor(
+    private authService: AngularFireAuth,
+    private snackBarService: SnackService
+  ) {}
 
   async canActivate(
     route: ActivatedRouteSnapshot,
@@ -19,6 +23,7 @@ export class AuthGuard implements CanActivate {
     const user = await this.authService.currentUser;
     const isLoggedIn = !!user; //convert it into boolean
 
+    if (!isLoggedIn) this.snackBarService.authError();
     return isLoggedIn;
   }
 }
