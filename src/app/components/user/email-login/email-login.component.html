@@ -1,0 +1,51 @@
+<mat-card>
+  <div *ngIf="isSignup">
+    <h2>Register</h2>
+    <button mat-stroked-button (click)="changeFormType('login')">
+      already have an account?
+    </button>
+  </div>
+
+  <div *ngIf="isLogin">
+    <h2>Sign In</h2>
+    <button size="small" mat-stroked-button (click)="changeFormType('signup')">
+      not registered yet?
+    </button>
+  </div>
+
+  <div *ngIf="isPasswordReset">
+    <h2>Reset Password</h2>
+    <button size="small" mat-button (click)="changeFormType('login')">Back</button>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field [color]="email?.valid && 'accent'">
+      <input type="text" matInput formControlName='email' placeholder="Email" autocomplete="off" />
+      <mat-error *ngIf="email?.invalid && email?.dirty">Enter a vaild email address</mat-error>
+    </mat-form-field>
+
+    <mat-form-field [color]="password?.valid && 'accent'" *ngIf="!isPasswordReset">
+      <input type="password" matInput formControlName='password' placeholder="Password" autocomplete="off" />
+      <mat-error *ngIf="password?.invalid && password?.dirty">Password must be at least 6 characters long</mat-error>
+    </mat-form-field>
+
+    <mat-form-field [color]="passwordsDoMatch ?'accent' : 'warn'" *ngIf="isSignup">
+      <input type="password" matInput formControlName='confirmPassword' placeholder="Confirm password"
+        autocomplete="off" />
+      <mat-error *ngIf="confirmPassword?.invalid && confirmPassword?.dirty">Passwords do not match</mat-error>
+    </mat-form-field>
+
+    <mat-error class="server-error">{{serverMessage}}</mat-error>
+
+    <button mat-raised-button color="accent" type="submit" *ngIf="!isPasswordReset"
+      [disabled]="form.invalid || !passwordsDoMatch || loading ">Submit</button>
+
+    <button *ngIf="isPasswordReset" mat-stroked-button type="submit" [disabled]="loading">
+      Send Reset Email
+    </button>
+  </form>
+
+  <button mat-button *ngIf="isLogin && !isPasswordReset" (click)="changeFormType('reset')">
+    Forgot password?
+  </button>
+</mat-card>
