@@ -33,7 +33,7 @@ export class BoardService {
       switchMap((user) => {
         if (user) {
           return this.db
-            .collection('boards', (ref) =>
+            .collection<Board>('boards', (ref) =>
               ref.where('uid', '==', user.uid).orderBy('priority')
             )
             .valueChanges({ idField: 'id' }); //return as observable
