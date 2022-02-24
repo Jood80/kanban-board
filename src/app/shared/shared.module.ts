@@ -12,7 +12,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from '../components/nav/nav.component';
 
 const components = [NavComponent];
 
