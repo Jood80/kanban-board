@@ -12,10 +12,16 @@ export class TaskDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<TaskDialogComponent>,
+    private boardService: BoardService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   onNoClick() {
     this.dialogRef.close();
+  }
+
+  handleTaskDelete() {
+    this.boardService.removeTask(this.data.booardId, this.data.task);
+    this.onNoClick();
   }
 }
