@@ -11,9 +11,15 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { BoardListComponent } from './board-list/board-list.component';
 import { BoardComponent } from './board/board.component';
 import { BoardDialogComponent } from './dialogs/board-dialog/board-dialog.component';
+import { TaskDialogComponent } from './dialogs/task-dialog/task-dialog.component';
 
 @NgModule({
-  declarations: [BoardListComponent, BoardComponent, BoardDialogComponent],
+  declarations: [
+    BoardListComponent,
+    BoardComponent,
+    BoardDialogComponent,
+    TaskDialogComponent,
+  ],
   imports: [
     CommonModule,
     KanbanRoutingModule,

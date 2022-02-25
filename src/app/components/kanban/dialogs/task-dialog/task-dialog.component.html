@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Task</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <textarea
+      placeholder="Task description"
+      matInput
+      [(ngModel)]="data.task.description"
+    ></textarea>
+  </mat-form-field>
+  <br />
+
+  <mat-button-toggle-group
+    #group="matButtonToggleGroup"
+    [(ngModel)]="data.task.label"
+  >
+    <mat-button-toggle *ngFor="let color of labelOptions" [value]="color">
+      <mat-icon [ngClass]="color">{{
+        color === "gray" ? "check_circle" : "lens"
+      }}</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
+    {{ data.isNew ? "Add Task" : "Update Task" }}
+  </button>
+</div>
