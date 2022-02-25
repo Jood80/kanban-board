@@ -3,4 +3,8 @@
   cdkDropListOrientation="horizontal"
   class="boards"
   (cdkDropListDropped)="drop($event)"
-></div>
+>
+  <app-board cdkDrag *ngFor="let board of boards" [board]="board">
+    <mat-icon class="mat-18" cdkDragHandle>drag-indicator</mat-icon>
+  </app-board>
+</div>
