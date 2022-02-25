@@ -1,7 +1,7 @@
 export interface Board {
   id: string;
   title: string;
-  priority: string;
+  priority: number;
   tasks: Task[];
 }
 
