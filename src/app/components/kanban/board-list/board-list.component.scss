@@ -44,3 +44,14 @@
 .boards.cdk-drop-list-dragging .cdk-drag {
   transition: transform 300ms ease;
 }
+
+.board-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 5px gray dashed;
+  width: 300px;
+  padding: 32px;
+  height: 350px;
+}
