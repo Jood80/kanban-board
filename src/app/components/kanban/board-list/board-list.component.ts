@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Subscription } from 'rxjs';
+
 import { Board } from 'src/app/models/board.model';
 import { BoardService } from 'src/app/shared/services/board.service';
 
@@ -22,5 +24,10 @@ export class BoardListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.boards, event.previousIndex, event.currentIndex);
+    this.boardService.sortBoards(this.boards);
   }
 }
