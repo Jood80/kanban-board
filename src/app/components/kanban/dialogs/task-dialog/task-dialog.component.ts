@@ -21,7 +21,7 @@ export class TaskDialogComponent {
   }
 
   handleTaskDelete() {
-    this.boardService.removeTask(this.data.booardId, this.data.task);
+    this.boardService.removeTask(this.data.boardId, this.data.task);
     this.onNoClick();
   }
 }

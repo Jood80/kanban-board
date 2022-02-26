@@ -75,6 +75,9 @@ export class BoardService {
       .doc(boardId)
       .update({
         tasks: firebase.firestore.FieldValue.arrayRemove(task),
+      })
+      .catch((err) => {
+        console.error(err); //TODO: handle that exception properly
       });
   }
 }
