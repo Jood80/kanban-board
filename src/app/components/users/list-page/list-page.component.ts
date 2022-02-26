@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user.model';
 import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
@@ -8,6 +10,8 @@ import { SeoService } from 'src/app/services/seo.service';
   styleUrls: ['./list-page.component.scss'],
 })
 export class ListPageComponent implements OnInit {
+  users$: Observable<User[]>;
+
   constructor(private seo: SeoService, private firestore: AngularFirestore) {}
 
   ngOnInit(): void {
@@ -15,5 +19,9 @@ export class ListPageComponent implements OnInit {
       title: 'User List',
       description: ' All users listed',
     });
+
+    this.users$ = this.firestore
+      .collection('users')
+      .valueChanges({ idField: 'id' });
   }
 }

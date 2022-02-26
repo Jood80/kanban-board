@@ -1,1 +1,14 @@
-<p>list-page works!</p>
+<h1>List Page</h1>
+
+<mat-nav-list role="list">
+  <h3 mat-subheader>Users</h3>
+
+  <mat-list-item
+    *ngFor="let user of users$ | async"
+    [routerLink]="user.id"
+    role="listitem"
+  >
+    <mat-icon mat-list-icon>account_box</mat-icon>
+    <h3>{{ user.name }}</h3>
+  </mat-list-item>
+</mat-nav-list>
