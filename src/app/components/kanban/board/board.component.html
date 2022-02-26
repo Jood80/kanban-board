@@ -24,8 +24,6 @@
       <mat-icon>add</mat-icon>
     </button>
 
-    <button mat-stroked-button (click)="handleDelete()">
-      <mat-icon>delete</mat-icon>
-    </button>
+    <app-delete-button (canDelete)="handleDelete()"></app-delete-button>
   </div>
 </mat-card>

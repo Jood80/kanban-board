@@ -25,4 +25,9 @@
   <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
     {{ data.isNew ? "Add Task" : "Update Task" }}
   </button>
+
+  <app-delete-button
+    (canDelete)="handleTaskDelete()"
+    *ngIf="!data.isNew"
+  ></app-delete-button>
 </div>
