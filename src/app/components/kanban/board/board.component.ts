@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { BoardService } from 'src/app/shared/services/board.service';
 import { TaskDialogComponent } from '../dialogs/task-dialog/task-dialog.component';
+import { Task } from 'src/app/models/board.model';
 
 @Component({
   selector: 'app-board',
@@ -29,6 +30,7 @@ export class BoardComponent {
         ? { task: { ...task }, isNew: false, boardId: this.board.id, idx }
         : { task: newTask, isNew: true },
     });
+
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         if (result.isNew) {
