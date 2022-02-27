@@ -12,6 +12,7 @@ export class SnackService {
   authError() {
     this.snackBarservice.open('🔑 Oh oh! you must be logged in ', 'Let me in', {
       duration: 5000,
+      panelClass: ['accent-snackbar'],
     });
 
     return this.snackBarservice._openedSnackBarRef
